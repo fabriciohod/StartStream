@@ -96,7 +96,7 @@ namespace StartStream
 
         public static string[] LoadProgramList()
         {
-            const string configFilePath = "Programas.json";
+            const string configFilePath = "Programs.json";
 
             if (!File.Exists(configFilePath))
             {
