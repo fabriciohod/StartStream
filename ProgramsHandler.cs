@@ -3,8 +3,14 @@ using System.Text.Json;
 
 namespace StartStream
 {
+    /// <summary>
+    /// Handles the opening and closing of programs specified in the Programs.json file.
+    /// </summary>
     public static class ProgramsHandler
     {
+        /// <summary>
+        /// Opens all programs specified in the Programs.json file.
+        /// </summary>
         public static void OpenPrograms()
         {
             string[] programs = LoadProgramList();
@@ -24,6 +30,7 @@ namespace StartStream
                     if (File.Exists(obsExecutable))
                     {
 
+                        // Start OBS with the correct working directory
                         ProcessStartInfo startInfo = new ProcessStartInfo
                         {
                             FileName = obsExecutable,
@@ -47,6 +54,9 @@ namespace StartStream
             Console.ReadKey();
         }
 
+        /// <summary>
+        /// Closes all programs specified in the Programs.json file.
+        /// </summary>
         public static void ClosePrograms()
         {
             string[] programs = LoadProgramList();
@@ -80,6 +90,10 @@ namespace StartStream
             Console.ReadKey();
         }
 
+        /// <summary>
+        /// Kills a process with the specified name.
+        /// </summary>
+        /// <param name="processName">The name of the process to kill.</param>
         public static void KillProcess(string processName)
         {
             Process[] processes = Process.GetProcessesByName(processName);
@@ -98,6 +112,10 @@ namespace StartStream
             }
         }
 
+        /// <summary>
+        /// Loads the list of programs from the Programs.json file.
+        /// </summary>
+        /// <returns>An array of strings representing the programs to open/close.</returns>
         public static string[] LoadProgramList()
         {
             const string configFilePath = "Programs.json";
