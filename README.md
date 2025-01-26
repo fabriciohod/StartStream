@@ -34,4 +34,4 @@ Fiz essa ferramenta para abrir e fechar todos os programas que uso para as minha
 > Os caminhos precisam usar \ em vez de uma única.
 
 
-# [Download](https://github.com/fabriciohod/StartStream/releases/download/1.0.0/Start.Stream.zip)
+# [Download](https://github.com/fabriciohod/StartStream/releases/download/1.0.1/Start-Stream.zip)
