@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-using System.Text.Json;
-using StartStream;
+﻿using StartStream;
 
 while (true)
 {
