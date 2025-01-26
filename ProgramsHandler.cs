@@ -64,6 +64,10 @@ namespace StartStream
 
                 try
                 {
+                    string obsExecutable = Path.Combine(program, "obs64.exe");
+                    if (File.Exists(obsExecutable))
+                        processName = "obs64";
+                
                     KillProcess(processName);
                 }
                 catch (Exception ex)

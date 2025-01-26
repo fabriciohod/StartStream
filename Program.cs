@@ -4,7 +4,7 @@ while (true)
 {
     Console.Clear();
     Console.WriteLine("===============================");
-    Console.WriteLine("    Program Manager for Live");
+    Console.WriteLine("         Program Manager       ");
     Console.WriteLine("===============================");
     Console.WriteLine("[1] Open programs for live");
     Console.WriteLine("[2] Close programs for live");
