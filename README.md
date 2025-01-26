@@ -33,4 +33,4 @@ Fiz essa ferramenta para abrir e fechar todos os programas que uso para as minha
 > No caso do OBS, você deve colocar o caminho da pasta onde o executável dele está. Não coloque o `obs64.exe` no final.
 
 
-# [Download]()
+# [Download](https://github.com/fabriciohod/StartStream/releases/download/1.0.0/Start.Stream.zip)
