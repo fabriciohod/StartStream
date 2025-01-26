@@ -12,8 +12,8 @@ This tool is designed to start and close all the software you use for streaming.
 ]
 ```
 
-> **Important:**  
-For OBS, use the folder path where the executable is located. Do not point directly to the executable file.
+> [!IMPORTANT] 
+> For OBS, use the folder path where the executable is located. Do not point directly to the executable file.
 
 ### PT-BR
 
@@ -29,8 +29,8 @@ Fiz essa ferramenta para abrir e fechar todos os programas que uso para as minha
 ]
 ```
 
-> **Important:**  
-No caso do OBS, você deve colocar o caminho da pasta onde o executável dele está. Não coloque o `obs64.exe` no final.
+> [!IMPORTANT]  
+> No caso do OBS, você deve colocar o caminho da pasta onde o executável dele está. Não coloque o `obs64.exe` no final.
 
 
 # [Download]()
