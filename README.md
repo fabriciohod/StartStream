@@ -14,7 +14,7 @@ This tool is designed to start and close all the software you use for streaming.
 
 > [!IMPORTANT] 
 > For OBS, use the folder path where the executable is located. Do not point directly to the executable file.
-> Also, the paths need to use \ instead of a single
+> Also, the paths need to use \ instead of a single.
 ### PT-BR
 
 Fiz essa ferramenta para abrir e fechar todos os programas que uso para as minhas lives. Para personalizar para você, é só abrir o arquivo `Programs.json` e adicionar o caminho do executável do programa que você quer abrir. Por exemplo:
@@ -31,7 +31,7 @@ Fiz essa ferramenta para abrir e fechar todos os programas que uso para as minha
 
 > [!IMPORTANT]  
 > No caso do OBS, você deve colocar o caminho da pasta onde o executável está. Não inclua o `obs64.exe` no final.
-> Os caminhos precisam usar \ em vez de uma única .
+> Os caminhos precisam usar \ em vez de uma única.
 
 
-# [Download](https://github.com/fabriciohod/StartStream/releases/download/1.0.0/Start.Stream.zip)
+# [Download](https://github.com/fabriciohod/StartStream/releases/download/1.0.1/Start-Stream.zip)
