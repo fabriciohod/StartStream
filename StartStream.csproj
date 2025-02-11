@@ -7,10 +7,20 @@
     <PublishSingleFile>true</PublishSingleFile>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="YamlDotNet" Version="16.3.0" />
+  </ItemGroup>
   <Target Name="IncludeEmptyProgramsJsonForPublish" AfterTargets="Publish">
-      <WriteLinesToFile
-          File="$(PublishDir)Programs.json"
-          Lines="[]"
-          Overwrite="true" />
+      <WriteLinesToFile File="$(PublishDir)Programs.yaml" 
+      Lines='
+programs:
+  - name: Display Name
+    path: "path\\to\\exe"
+    runAsAdmin: false
+
+  - name: Display Name
+    path: "path\\to\\exe"
+    runAsAdmin: false
+' Overwrite="true" />
   </Target>
 </Project>
