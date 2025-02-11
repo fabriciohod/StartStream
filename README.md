@@ -20,7 +20,7 @@ programs:
   - name: OBS Studio
     path: "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
     launchOptions: "https://www.youtube.com/"
-    runAsAdmin: true
+    runAsAdmin: false
 ```
 ### PT-BR
 
@@ -45,7 +45,7 @@ programs:
   - name: OBS Studio
     path: "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
     launchOptions: "https://www.youtube.com/"
-    runAsAdmin: true
+    runAsAdmin: false
 ```
 
 # [Download](https://github.com/CoffeSan/StartStream/releases/download/1.1.0/Start-Stream-1.1.0.zip)
