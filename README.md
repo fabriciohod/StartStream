@@ -49,4 +49,4 @@ programs:
 ```
 
 
-# [Download](https://github.com/fabriciohod/StartStream/releases/download/1.0.2/Start-Stream-1.0.2.zip)
+# [Download](https://github.com/CoffeSan/StartStream/releases/download/1.1.0/Start-Stream-1.1.0.zip)
