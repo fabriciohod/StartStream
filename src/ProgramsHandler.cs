@@ -4,21 +4,13 @@ namespace StartStream
 {
     public static class ProgramsHandler
     {
-        static readonly List<Process?> RunningProcesses = new();
-        static readonly Logger Logger = new Logger("logs");
+        public static string ConfigPath { get; set; } = "Programs.yaml";
 
-        public static string ConfigPath = "Programs.yaml";
+        static readonly List<Process?> RunningProcesses = new();
+        static readonly Logger Logger = new("logs");
         public static void OpenPrograms()
         {
             List<ProgramItem> programs = ConfigReader.LoadProgramsFromYaml(ConfigPath);
-
-            if (programs.Count == 0)
-            {
-                Console.WriteLine("No programs found in Programs.json.");
-                Logger.Error("No programs found in Programs.json.");
-                Console.ReadKey();
-                return;
-            }
 
             foreach (ProgramItem program in programs)
             {
@@ -36,74 +28,76 @@ namespace StartStream
                     Process? process = Process.Start(startInfo);
                     RunningProcesses.Add(process);
 
+                    Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine($"Started: {program.Name}");
+
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine($"Press any key to go back to the menu.");
+                    Console.ReadKey();
+
                 }
                 catch (Exception ex)
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine($"Failed to start {program.Name}: {ex.Message}");
+
                     Logger.Error($"Failed to start {program.Name}: {ex.Message}");
+                }
+                finally
+                {
+                    Console.ForegroundColor = ConsoleColor.White;
                 }
             }
 
             Console.WriteLine("All programs processed.");
-            Console.ReadKey();
         }
 
         public static void ClosePrograms()
         {
-            if (RunningProcesses.Count == 0)
-            {
-                Console.WriteLine("No programs found in Programs.json.");
-                Logger.Error("No programs found in Programs.json.");
-                Console.ReadKey();
-                return;
-            }
-
             foreach (Process? process in RunningProcesses)
             {
-                try
-                {
-                    Console.WriteLine("Closing " + process?.ProcessName);
-                    if (process?.ProcessName != null) 
-                        KillProcess(process.ProcessName);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Failed to close {process?.ProcessName}: {ex.Message}");
-                    Logger.Error($"Failed to close {process?.ProcessName}: {ex.Message}");
-                }
+                if (process == null)
+                    continue;
+
+                KillProcess(process);
             }
 
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("All programs processed.");
-            Console.ReadKey();
         }
 
-        public static void KillProcess(string processName)
+        static void KillProcess(Process process)
         {
-            Process[] processes = Process.GetProcessesByName(processName);
-
             try
             {
+                if (process == null)
+                    throw new Exception("Cannot kill a null process.");
 
-                if (processes.Length == 0)
-                {
-                    Console.WriteLine($"No running process found for: {processName}");
-                    return;
-                }
+                if (process.CloseMainWindow())
+                    process.WaitForExit(100);
 
-                foreach (Process process in processes)
-                {
+                if (!process.HasExited)
                     process.Kill();
-                    process.WaitForExit();
-                    Console.WriteLine($"Closed process: {processName}");
-                }
+
+
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"Closed process: {process.ProcessName}");
+
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine($"Press any key to go back to the menu.");
+                Console.ReadKey();
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Failed to close {processName}: {ex.Message}");
-                Logger.Error($"Failed to close {processName}: {ex.Message}");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Failed to close {process.ProcessName}: {ex.Message}");
+
+                Logger.Error($"Failed to close {process.ProcessName}: {ex.Message}");
+            }
+            finally
+            {
+                Console.ForegroundColor = ConsoleColor.White;
             }
         }
-
     }
 }

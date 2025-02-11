@@ -25,15 +25,16 @@ while (true)
 
 void ParsingArgs(string[] strings)
 {
-    if (strings.Length <= 0) 
+    if (strings.Length <= 0)
         return;
-    
+
     if (strings[0] == "--config" && strings.Length > 1)
         ProgramsHandler.ConfigPath = strings[1];
 }
 
 void WriteOptions()
 {
+    Console.ForegroundColor = ConsoleColor.White;
     Console.Clear();
     Console.WriteLine("===============================");
     Console.WriteLine("         Program Manager       ");

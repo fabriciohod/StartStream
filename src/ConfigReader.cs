@@ -3,6 +3,11 @@ using YamlDotNet.Serialization.NamingConventions;
 
 namespace StartStream
 {
+    class ProgramsContainer
+    {
+        public List<ProgramItem>? Programs { get; set; } = new();
+    }
+
     public class ProgramItem
     {
         public string Name { get; set; } = string.Empty;
@@ -19,21 +24,28 @@ namespace StartStream
 
             if (!File.Exists(yamlFilePath))
             {
-
                 Console.WriteLine("Programs.yaml not found.");
-                logger.Error($"yaml file {yamlFilePath}");
+
+                logger.Error($"Programs.yaml not found at path: {yamlFilePath}");
                 return new List<ProgramItem>();
             }
 
-            string yamlContent = File.ReadAllText(yamlFilePath);
-            IDeserializer deserializer = new DeserializerBuilder()
-                .WithNamingConvention(CamelCaseNamingConvention.Instance)
-                .Build();
+            try
+            {
+                string yamlContent = File.ReadAllText(yamlFilePath);
+                IDeserializer deserializer = new DeserializerBuilder()
+                    .WithNamingConvention(CamelCaseNamingConvention.Instance)
+                    .Build();
 
-            ProgramsContainer programsData = deserializer.Deserialize<ProgramsContainer>(yamlContent);
-            return programsData.Programs ?? new List<ProgramItem>();
+                ProgramsContainer programsData = deserializer.Deserialize<ProgramsContainer>(yamlContent);
+                return programsData.Programs ?? new List<ProgramItem>();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro while reading config file: {ex}");
+                logger.Error($"Erro while reading config file: {ex}");
+                return new List<ProgramItem>();
+            }
         }
-
-        abstract record ProgramsContainer { public List<ProgramItem>? Programs { get; set; } }
     }
 }
