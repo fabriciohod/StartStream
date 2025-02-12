@@ -13,14 +13,14 @@ programs:
     runAsAdmin: false
 ```
 >[!NOTE]
->If needed, you can add the launchOptions field to run a program with initialization options.
+>If needed, you can add the `launchOptions` field to run a program with initialization options.
 >A useful example of this is configuring the browser to open a specific page, such as the Twitch dashboard or YouTube.
 ```yaml
 programs:
   - name: OBS Studio
     path: "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
     launchOptions: "https://www.youtube.com/"
-    runAsAdmin: true
+    runAsAdmin: false
 ```
 ### PT-BR
 
@@ -38,15 +38,14 @@ programs:
 ```
 
 >[!NOTE]
-> Caso necessário, você pode adicionar o campo launchOptions para executar um programa com opções de inicialização.
+> Caso necessário, você pode adicionar o campo `launchOptions` para executar um programa com opções de inicialização.
 > Um exemplo útil disso é configurar o navegador para abrir uma página específica, como o dashboard da Twitch ou o YouTube.
 ```yaml
 programs:
   - name: OBS Studio
     path: "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
     launchOptions: "https://www.youtube.com/"
-    runAsAdmin: true
+    runAsAdmin: false
 ```
 
-
-# [Download](https://github.com/fabriciohod/StartStream/releases/download/1.0.2/Start-Stream-1.0.2.zip)
+# [Download](https://github.com/CoffeSan/StartStream/releases/download/1.1.0/Start-Stream-1.1.0.zip)
