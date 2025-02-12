@@ -48,4 +48,4 @@ programs:
     runAsAdmin: false
 ```
 
-# [Download](https://github.com/CoffeSan/StartStream/releases/download/1.1.0/Start-Stream-1.1.0.zip)
+# [Download](https://github.com/CoffeSan/StartStream/releases/download/1.1.1/Start-Stream.1.1.1.zip)
