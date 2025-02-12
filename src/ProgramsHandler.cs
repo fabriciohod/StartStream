@@ -6,7 +6,7 @@ namespace StartStream
     {
         public static string ConfigPath { get; set; } = "Programs.yaml";
 
-        static readonly List<Process?> RunningProcesses = new();
+        static readonly List<Process> RunningProcesses = new();
         static readonly Logger Logger = new("logs");
         public static void OpenPrograms()
         {
@@ -32,9 +32,6 @@ namespace StartStream
                     Console.WriteLine($"Started: {program.Name}");
 
                     Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine($"Press any key to go back to the menu.");
-                    Console.ReadKey();
-
                 }
                 catch (Exception ex)
                 {
@@ -54,12 +51,19 @@ namespace StartStream
 
         public static void ClosePrograms()
         {
-            foreach (Process? process in RunningProcesses)
+            foreach (Process process in RunningProcesses)
             {
                 if (process == null)
                     continue;
 
-                KillProcess(process);
+                try
+                {
+                    KillProcess(process);
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error($"Failed to close {process.ProcessName}: {ex.Message}");
+                }
             }
 
             Console.ForegroundColor = ConsoleColor.Green;
@@ -73,19 +77,14 @@ namespace StartStream
                 if (process == null)
                     throw new Exception("Cannot kill a null process.");
 
-                if (process.CloseMainWindow())
-                    process.WaitForExit(100);
-
-                if (!process.HasExited)
-                    process.Kill();
-
-
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine($"Closed process: {process.ProcessName}");
 
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine($"Press any key to go back to the menu.");
-                Console.ReadKey();
+                process.CloseMainWindow();
+                process.WaitForExit(300);
+
+                if (!process.HasExited)
+                    process.Kill();
             }
             catch (Exception ex)
             {
